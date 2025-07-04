@@ -50,6 +50,36 @@ Delta updates and test logs are sent to Signal K:
 - `config.py`: Config storage and defaults
 - `nvs.py`: Simple NVS-style wrapper
 
+## Requirements
+
+- Raspberry Pi Pico W running MicroPython 1.20 or later
+- Two IBT-2 (BTS7960) motor drivers
+- Rocker switches for manual control
+- `urequests` module on the Pico for HTTP communication
+
+## Deployment
+
+1. Copy all `.py` files to the Pico W using `mpremote` or Thonny.
+2. Edit `config.json` or browse to `http://trimtab.local` after boot to
+   configure Wi‑Fi and motor settings.
+3. Reboot the board and `main.py` will start automatically.
+
+## Circuit Diagram
+
+```
+                Raspberry Pi Pico W
+      +-----------------------------+
+      | GP2  ------> Port IN1       |
+      | GP3  ------> Port IN2       |
+      | GP4  --PWM-> Port EN        |
+      | GP5  ------> Starboard IN1  |
+      | GP6  ------> Starboard IN2  |
+      | GP7  --PWM-> Starboard EN   |
+      | 5V   ------> IBT-2 VCC      |
+      | GND  ------> IBT-2 GND      |
+      +-----------------------------+
+```
+
 ## License
 
 MIT
